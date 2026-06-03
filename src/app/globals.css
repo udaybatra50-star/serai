@@ -1,26 +1,175 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ── Serai brand tokens ── */
+  --color-cream:        #FAFAF5;
+  --color-cream-deep:   #F4F3EC;
+  --color-cream-border: #E8E4D9;
+  --color-charcoal:     #1C1C1A;
+  --color-charcoal-mid: #4A4A45;
+  --color-stone:        #8A8880;
+  --color-gold:         #B08D57;
+  --color-gold-light:   #F0E8D5;
+  --color-gold-deep:    #8A6A35;
+  --color-mocha:        #8B6F5E;
+  --color-mocha-light:  #F2EAE4;
+  --color-blush:        #C4768E;
+  --color-blush-light:  #F5E8EF;
+
+  --font-sans:   var(--font-sans,  'DM Sans',  system-ui, sans-serif);
+  --font-serif:  var(--font-serif, 'Georgia',  serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #FAFAF5;
+  --foreground: #1C1C1A;
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+::selection {
+  background-color: #F0E6CF;
+  color: #1C1C1A;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #F4F3EC; }
+::-webkit-scrollbar-thumb { background: #E8E4D9; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #8A8880; }
+
+/* ── Layout ── */
+.container-editorial {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+@media (min-width: 1024px) {
+  .container-editorial { padding: 0 3.5rem; }
+}
+
+/* ── Typography utilities ── */
+.overline {
+  font-size: 0.65rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8A8880;
+}
+
+.display-xl {
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  font-family: var(--font-serif);
+}
+
+.display-lg {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  font-family: var(--font-serif);
+}
+
+.display-md {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-family: var(--font-serif);
+}
+
+/* ── Buttons ── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #B08D57;
+  color: #fff;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  font-family: var(--font-sans);
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s ease;
+  text-decoration: none;
+}
+.btn-gold:hover { background: #8A6A35; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: #1C1C1A;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  font-family: var(--font-sans);
+  border: 1.5px solid #1C1C1A;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+.btn-outline:hover { background: #1C1C1A; color: #fff; }
+
+/* ── Card ── */
+.card {
+  background: #fff;
+  border: 1px solid #E8E4D9;
+  border-radius: 4px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(28,28,26,0.08);
+  transform: translateY(-2px);
+}
+
+/* ── Divider ── */
+.divider { width: 100%; height: 1px; background: #E8E4D9; }
+
+/* ── Faire-style pill tag ── */
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+  border-radius: 100px;
+  background: #F4F3EC;
+  color: #4A4A45;
+}
+.tag-gold  { background: #F0E6CF; color: #A8843A; }
+.tag-sage  { background: #EAF2EA; color: #3d7a3d; }
+.tag-blush { background: #F5E8EF; color: #8e3055; }
