@@ -7,24 +7,24 @@ const COOKIE_NAME = 'serai_access'
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Allow the password check API route through
-  if (pathname === '/api/unlock') {
+  // Always allow static assets and API routes
+  if (
+    pathname.startsWith('/_next/') ||
+    pathname.startsWith('/favicon') ||
+    pathname.startsWith('/api/')
+  ) {
     return NextResponse.next({ request })
   }
 
-  // Check if user has unlocked the site
+  // Password gate — check cookie
   const accessCookie = request.cookies.get(COOKIE_NAME)
-  if (!accessCookie || accessCookie.value !== SITE_PASSWORD) {
-    // Show password gate for all pages except static assets
-    if (!pathname.startsWith('/_next') && !pathname.startsWith('/favicon')) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/locked'
-      if (pathname !== '/locked') {
-        return NextResponse.rewrite(url)
-      }
-    }
+  if (accessCookie?.value !== SITE_PASSWORD && pathname !== '/locked') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/locked'
+    return NextResponse.rewrite(url)
   }
 
+  // ── Supabase auth ──────────────────────────────────
   let response = NextResponse.next({ request })
 
   const supabase = createServerClient(
@@ -47,8 +47,6 @@ export async function proxy(request: NextRequest) {
   )
 
   const { data: { user } } = await supabase.auth.getUser()
-
-  const { pathname } = request.nextUrl
 
   // Protect dashboard routes
   const protectedPaths = ['/brand/', '/retailer/', '/admin', '/onboarding/']
