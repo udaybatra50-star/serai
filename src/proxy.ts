@@ -1,7 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
+const SITE_PASSWORD = 'uday'
+const COOKIE_NAME = 'serai_access'
+
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl
+
+  // Allow the password check API route through
+  if (pathname === '/api/unlock') {
+    return NextResponse.next({ request })
+  }
+
+  // Check if user has unlocked the site
+  const accessCookie = request.cookies.get(COOKIE_NAME)
+  if (!accessCookie || accessCookie.value !== SITE_PASSWORD) {
+    // Show password gate for all pages except static assets
+    if (!pathname.startsWith('/_next') && !pathname.startsWith('/favicon')) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/locked'
+      if (pathname !== '/locked') {
+        return NextResponse.rewrite(url)
+      }
+    }
+  }
+
   let response = NextResponse.next({ request })
 
   const supabase = createServerClient(
