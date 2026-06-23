@@ -46,13 +46,13 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fdfaf6] flex">
+    <div className="min-h-screen bg-[#faf8f5] flex">
       {/* Left panel */}
-      <div className="hidden lg:flex lg:w-1/2 bg-[#5c2040] flex-col justify-between p-16 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, #b87090 0%, transparent 60%)' }} />
+      <div className="hidden lg:flex lg:w-1/2 bg-[#1C1C1A] flex-col justify-between p-16 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, #d4a0b8 0%, transparent 60%)' }} />
         <Link href="/" className="flex items-center gap-2 relative z-10">
           <div className="w-7 h-7 bg-white flex items-center justify-center">
-            <span className="text-[#5c2040] text-xs" style={{ fontFamily: 'var(--font-serif, Georgia, serif)' }}>B</span>
+            <span className="text-[#B08D57] text-xs" style={{ fontFamily: 'var(--font-serif, Georgia, serif)' }}>B</span>
           </div>
           <span className="text-white text-lg tracking-[0.2em] uppercase font-light" style={{ fontFamily: 'var(--font-serif, Georgia, serif)' }}>Serai</span>
         </Link>
@@ -61,44 +61,44 @@ export default function SignInPage() {
             Welcome back to the marketplace.
           </h2>
           <p className="text-white/60 text-base leading-relaxed" style={{ fontFamily: 'var(--font-serif, Georgia, serif)' }}>
-            Your brands, your orders, your business — all in one premium wholesale platform.
+            Your brands, your orders, your business. All in one premium wholesale platform.
           </p>
         </div>
-        <p className="text-white/20 text-xs font-sans tracking-wide relative z-10">© 2025 Serai Technologies Pvt. Ltd.</p>
+        <p className="text-white/20 text-xs font-sans tracking-wide relative z-10">© {new Date().getFullYear()} Serai Technologies Pvt. Ltd.</p>
       </div>
 
       {/* Right panel */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 lg:px-16 py-12">
         <div className="max-w-md w-full mx-auto">
           <Link href="/" className="flex items-center gap-2 mb-10 lg:hidden">
-            <div className="w-7 h-7 bg-[#5c2040] flex items-center justify-center">
+            <div className="w-7 h-7 bg-[#B08D57] flex items-center justify-center">
               <span className="text-white text-xs" style={{ fontFamily: 'var(--font-serif, Georgia, serif)' }}>B</span>
             </div>
-            <span className="text-[#16120f] text-lg tracking-[0.2em] uppercase font-light" style={{ fontFamily: 'var(--font-serif, Georgia, serif)' }}>Serai</span>
+            <span className="text-[#1a1614] text-lg tracking-[0.2em] uppercase font-light" style={{ fontFamily: 'var(--font-serif, Georgia, serif)' }}>Serai</span>
           </Link>
 
-          <p className="section-label mb-3">Welcome back</p>
-          <h1 className="text-3xl font-light text-[#16120f] mb-10" style={{ fontFamily: 'var(--font-serif, Georgia, serif)', letterSpacing: '-0.025em' }}>
+          <p className="section-label mb-3" style={{ color: '#B08D57' }}>Welcome back</p>
+          <h1 className="text-3xl font-light text-[#1a1614] mb-10" style={{ fontFamily: 'var(--font-serif, Georgia, serif)', letterSpacing: '-0.025em' }}>
             Sign in to your account
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#6e6560] mb-2 font-sans">Email address</label>
+              <label className="block text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#7a706b] mb-2 font-sans">Email address</label>
               <input
                 type="email"
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 border border-[#e4dbd0] bg-white text-sm text-[#16120f] placeholder:text-[#b8b0a8] focus:outline-none focus:ring-1 focus:ring-[#5c2040] focus:border-[#5c2040] transition-all"
+                className="w-full px-4 py-3 border border-[#e8e0d8] bg-white text-sm text-[#1a1614] placeholder:text-[#b8b0a8] focus:outline-none focus:ring-1 focus:ring-[#1C1C1A] focus:border-[#1C1C1A] transition-all"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#6e6560] font-sans">Password</label>
-                <Link href="/auth/reset-password" className="text-xs text-[#5c2040] hover:underline font-sans">Forgot password?</Link>
+                <label className="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#7a706b] font-sans">Password</label>
+                <Link href="/auth/reset-password" className="text-xs text-[#1C1C1A] hover:underline font-sans">Forgot password?</Link>
               </div>
               <div className="relative">
                 <input
@@ -106,10 +106,10 @@ export default function SignInPage() {
                   required
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  className="w-full px-4 py-3 pr-12 border border-[#e4dbd0] bg-white text-sm text-[#16120f] placeholder:text-[#b8b0a8] focus:outline-none focus:ring-1 focus:ring-[#5c2040] focus:border-[#5c2040] transition-all"
+                  className="w-full px-4 py-3 pr-12 border border-[#e8e0d8] bg-white text-sm text-[#1a1614] placeholder:text-[#b8b0a8] focus:outline-none focus:ring-1 focus:ring-[#1C1C1A] focus:border-[#1C1C1A] transition-all"
                   placeholder="Your password"
                 />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6e6560]">
+                <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? 'Hide password' : 'Show password'} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#7a706b]">
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
@@ -124,7 +124,7 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#5c2040] text-white py-4 text-sm tracking-[0.1em] uppercase font-sans hover:bg-[#461832] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
+              className="w-full bg-[#1C1C1A] text-white py-4 text-sm tracking-[0.1em] uppercase font-sans hover:bg-[#2E2E2B] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
             >
               {loading ? (
                 <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
@@ -138,8 +138,8 @@ export default function SignInPage() {
           </form>
 
           <div className="mt-8 text-center">
-            <span className="text-xs text-[#6e6560] font-sans">Don&apos;t have an account? </span>
-            <Link href="/auth/signup" className="text-xs text-[#5c2040] hover:underline font-sans">Create one</Link>
+            <span className="text-xs text-[#7a706b] font-sans">Don&apos;t have an account? </span>
+            <Link href="/auth/signup" className="text-xs text-[#1C1C1A] hover:underline font-sans">Create one</Link>
           </div>
         </div>
       </div>
